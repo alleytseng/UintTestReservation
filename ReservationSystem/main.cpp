@@ -1,33 +1,28 @@
 #include <iostream>
 using namespace std;
-#include "string.h"
+#include <string>
+#include "stdio.h"
 #include "class.h"
 //#include "stdafx.h"
 int main()
 {
 	User num1("n1");
-	cout<<num1.pName<<" is ";
+	cout<<num1.Name<<" is ";
 	(num1.IsAdmin()==1)?cout<<"":cout<<"not ";
 	cout<<"admin.\n";
 	User num2("n2");
 	Reservation r1(num1);
-	cout<<num2.pName;
+	cout<<num2.Name;
 	(r1.CanBeCancelBy(num2)==1)?cout<<" can ":cout<<" cant't ";
-	cout<<"cancel "<<r1.pMadeBy<<"'s reservation.\n";
+	cout<<"cancel "<<r1.MadeBy<<"'s reservation.\n";
 	system("pause");
 	//Reservation
 	return 0;
 }
-User::User(char *pname1)
+User::User(string tmpName)
 {
-	pName=new char[strlen(pname1)+1];
-	int i=0;
-	while(i<strlen(pname1)+1)
-	{
-		pName[i]=pname1[i];
-		++i;
-	}
-	cout<<pName<<endl;
+	Name=tmpName;
+	//cout<<Name<<endl;
 }
 User::~User()
 {
@@ -35,25 +30,23 @@ User::~User()
 }
 bool User::IsAdmin()
 {
-	char admin[]="alley";
-	if(strcmp(admin,pName)==0)//the contents of both strings are equal
+	string admin="alley";
+	if(admin.compare(Name)==0)//the contents of both strings are equal
 		return true;
 	return false;
 }
 Reservation::Reservation(User user)
 {	
-	pMadeBy=new char[strlen(user.pName)];
-	strcpy(pMadeBy,user.pName);
+	MadeBy=user.Name;
 }
 Reservation::~Reservation()
 {
-	//delete []pMadeBy;
 }
 bool Reservation::CanBeCancelBy(User user)
 {
 	if(user.IsAdmin()==true)
 		return true;
-	if(strcmp(user.pName,pMadeBy)==0)//the contents of both strings are equal
+	if(user.Name.compare(MadeBy)==0)//the contents of both strings are equal
 		return true;
 	return false;
 

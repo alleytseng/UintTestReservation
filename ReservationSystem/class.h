@@ -1,12 +1,12 @@
-#include "string.h"
-
+#include <string>
+using namespace std;
 class User
 {
 public:
-	User(char *type);
+	User(string tmpName);
 	~User();
 	bool IsAdmin();
-	char *pName;
+	string Name;
 
 };
 class Reservation
@@ -16,5 +16,5 @@ public:
 	Reservation(User user);
 	~Reservation();
 	bool CanBeCancelBy(User user);
-	char *pMadeBy;
+	string MadeBy;
 };

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../ReservationSystem/class.h"
+#include <string>
+using namespace std;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace TestReservation_UnitTest
